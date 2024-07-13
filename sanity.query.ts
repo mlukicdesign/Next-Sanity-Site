@@ -24,3 +24,18 @@ export async function getProfile() {
         }`
       );
     }
+
+    export async function getJobs() {
+      return client.fetch(
+          groq`*[_type == "job"]{
+            _id,
+            name,
+            jobTitle,
+            logo {alt, "image": asset->url},
+            url,
+            description,
+            startDate,
+            endDate,
+          }`
+        );
+    }
